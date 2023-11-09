@@ -66,18 +66,18 @@ function renderTicketNum(e) {
 }
 
 function updateTicketNum(films) {
-   const newTicketSold = films.tickets_sold + 1 
+   const tickets_sold = films.tickets_sold + 1 
    if(films.tickets_sold !== films.capacity) {
     fetch(`${API}/${films.id}`, {
         method: 'PATCH',
         headers: {
                 'Content-Type': 'application/json'
             },
-        body: JSON.stringify({newTicketSold})
+        body: JSON.stringify({tickets_sold})
        })
        .then(res => res.json())
        .then(() => {
-            films.tickets_sold = newTicketSold
+            films.tickets_sold = tickets_sold
             renderTickets(films)
        })
    }
